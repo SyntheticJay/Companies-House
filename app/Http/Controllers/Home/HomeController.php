@@ -16,4 +16,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function flash()
+    {
+        return redirect()->route('home')->with('success', 'yo');
+    }
 }

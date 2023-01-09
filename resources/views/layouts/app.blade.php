@@ -11,14 +11,55 @@
 
         @vite(['resources/js/app.js'])
     </head>
-    <body data-set-preferred-mode-onload="true">
-        <div class="page-wrapper with-navbar-fixed-bottom">
-            <div class="content-wrapper">
-                <div class="container d-flex justify-content-center align-items-center mt-1">
-                    @include('layouts.partials.flash')
-                </div>
+    <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-set-preferred-mode-onload="true">
+        <div class="page-wrapper with-navbar-fixed-bottom @auth with-navbar with-sidebar @endauth">
+            @auth
+                <nav class="navbar">
+                    <div class="navbar-content">
+                        <button class="btn btn-action" type="button" onclick="halfmoon.toggleSidebar()">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            <span class="sr-only">Toggle sidebar</span>
+                        </button>
+                    </div>
+                    <a href="{{ route('home') }}" class="navbar-brand">
+                        Companies House
+                    </a>    
+                    <ul class="navbar-nav">
+                        <!-- content -->
+                    </ul>
+                    <div class="d-none d-md-flex ml-auto">
+                        <li class="nav-item dropdown with-arrow">
+                            <a class="nav-link" data-toggle="dropdown" id="nav-user-dropdown-toggle">
+                                {{ auth()->user()->name }}
+                                <i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-user-dropdown-toggle">
+                                <a href="{{ route('logout') }}" class="dropdown-item">
+                                    <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                                    Logout
+                                </a>
+                            </div>
+                        </li>
+                    </div>
+                </nav>
+                <div class="sidebar">
+                    <div class="sidebar-menu">
+                        <div class="sidebar-content">
+                            <h5 class="sidebar-title">{{ auth()->user()->name }}</h5>
+                            <div class="sidebar-divider"></div>
+                            <a href="{{ route('logout') }}" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                        <i class="fa fa-sign-out-alt"></i>
+                                </span>
+                                Logout Completely
+                            </a>
+                        </div>
+                    </div>
+                </div>   
+            @endauth
+            <main class="content-wrapper d-flex align-items-center justify-content-center flex-column">
                 @yield('content')
-            </div>
+            </main>
             <nav class="navbar navbar-fixed-bottom text-center">
                 <div class="navbar-text m-auto">
                     Companies House, 2022 Jay L.

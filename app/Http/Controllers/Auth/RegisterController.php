@@ -20,6 +20,10 @@ class RegisterController extends Controller
      */
     public function show(Request $request)
     {
+        if (auth()->check()) {
+            return redirect()->route('home');
+        }
+        
         return view('auth.register');    
     }
 
