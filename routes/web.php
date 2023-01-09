@@ -22,15 +22,15 @@ Route::get('/', function() {
     return redirect()->route('login');
 });
 
-Route::get('register', [RegisterController::class, 'show'])->name('register');
-Route::post('register', [RegisterController::class, 'register'])->name('register.post');
+Route::prefix('auth')->group(function() {
+    Route::get('register', [RegisterController::class, 'show'])->name('register');
+    Route::post('register', [RegisterController::class, 'register'])->name('register.post');
 
-Route::get('login', [LoginController::class, 'show'])->name('login');
-Route::post('login', [LoginController::class, 'login'])->name('login.post');
+    Route::get('login', [LoginController::class, 'show'])->name('login');
+    Route::post('login', [LoginController::class, 'login'])->name('login.post');
+});
 
 Route::middleware(['auth'])->group(function() {
     Route::get('home', [HomeController::class, 'show'])->name('home');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
-
-    Route::get('flash', [HomeController::class, 'flash'])->name('flash');
 });

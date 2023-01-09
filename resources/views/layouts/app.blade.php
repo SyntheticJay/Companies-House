@@ -12,7 +12,7 @@
         @vite(['resources/js/app.js'])
     </head>
     <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-        <div class="page-wrapper with-navbar-fixed-bottom @auth with-navbar with-sidebar @endauth">
+        <div class="page-wrapper with-navbar-fixed-bottom @auth with-navbar @endauth">
             @auth
                 <nav class="navbar">
                     <div class="navbar-content">
@@ -42,20 +42,7 @@
                         </li>
                     </div>
                 </nav>
-                <div class="sidebar">
-                    <div class="sidebar-menu">
-                        <div class="sidebar-content">
-                            <h5 class="sidebar-title">{{ auth()->user()->name }}</h5>
-                            <div class="sidebar-divider"></div>
-                            <a href="{{ route('logout') }}" class="sidebar-link sidebar-link-with-icon">
-                                <span class="sidebar-icon">
-                                        <i class="fa fa-sign-out-alt"></i>
-                                </span>
-                                Logout Completely
-                            </a>
-                        </div>
-                    </div>
-                </div>   
+                <!-- when viewing company, use sidebar --> 
             @endauth
             <main class="content-wrapper d-flex align-items-center justify-content-center flex-column">
                 @yield('content')
