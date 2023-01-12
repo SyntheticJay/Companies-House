@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Company\SearchController;
 use App\Http\Controllers\Home\HomeController;
 
 use Illuminate\Support\Facades\Route;
 
+use Jay\CHouse\CompaniesHouse;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,4 +35,14 @@ Route::prefix('auth')->group(function() {
 Route::middleware(['auth'])->group(function() {
     Route::get('home', [HomeController::class, 'show'])->name('home');
     Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::prefix('company')->group(function() {
+        Route::post('search', [SearchController::class, 'search'])->name('company.search');
+    });
+
+    Route::get('test', function() {
+        $c = new CompaniesHouse();
+
+        return $c->hello();
+    });
 });

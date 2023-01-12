@@ -1,0 +1,19 @@
+{
+    "name": "jay/chouse",
+    "description": "Interact with Companies House within Laravel",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jay Lodge",
+            "email": "dumpsteredbae@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Jay\\CHouse\\": "src/"
+        }
+    },
+    "require": {}
+}

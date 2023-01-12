@@ -12,20 +12,26 @@
         @vite(['resources/js/app.js'])
     </head>
     <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-        <div class="page-wrapper with-navbar-fixed-bottom @auth with-navbar @endauth">
+        <div class="page-wrapper @auth with-navbar @endauth">
             @auth
                 <nav class="navbar">
-                    <div class="navbar-content">
-                        <button class="btn btn-action" type="button" onclick="halfmoon.toggleSidebar()">
-                            <i class="fa fa-bars" aria-hidden="true"></i>
-                            <span class="sr-only">Toggle sidebar</span>
-                        </button>
-                    </div>
+                    @if (isset($company))
+                        <div class="navbar-content">
+                            <button class="btn btn-action" type="button" onclick="halfmoon.toggleSidebar()">
+                                <i class="fa fa-bars" aria-hidden="true"></i>
+                                <span class="sr-only">Toggle sidebar</span>
+                            </button>
+                        </div>
+                    @endif
                     <a href="{{ route('home') }}" class="navbar-brand">
                         Companies House
                     </a>    
-                    <ul class="navbar-nav">
-                        <!-- content -->
+                    <ul class="navbar-nav divided">
+                        <form class="form-inline d-none d-md-flex ml-auto" action="{{ route('company.search') }}" method="POST"> 
+                            @csrf
+                            <input name="company_id" type="text" class="form-control" placeholder="Search by Company ID" required="required">
+                            <button class="btn btn-primary" type="submit">Search</button>
+                        </form>
                     </ul>
                     <div class="d-none d-md-flex ml-auto">
                         <li class="nav-item dropdown with-arrow">
@@ -47,11 +53,6 @@
             <main class="content-wrapper d-flex align-items-center justify-content-center flex-column">
                 @yield('content')
             </main>
-            <nav class="navbar navbar-fixed-bottom text-center">
-                <div class="navbar-text m-auto">
-                    Companies House, 2022 Jay L.
-                </div>
-            </nav>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
         @yield('scripts')
