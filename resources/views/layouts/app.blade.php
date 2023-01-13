@@ -12,7 +12,7 @@
         @vite(['resources/js/app.js'])
     </head>
     <body class="with-custom-webkit-scrollbars with-custom-css-scrollbars" data-dm-shortcut-enabled="true" data-set-preferred-mode-onload="true">
-        <div class="page-wrapper @auth with-navbar @endauth">
+        <div class="page-wrapper @auth with-navbar @endauth @if (isset($company)) with-sidebar @endif">
             @auth
                 <nav class="navbar">
                     @if (isset($company))
@@ -48,7 +48,11 @@
                         </li>
                     </div>
                 </nav>
-                <!-- when viewing company, use sidebar --> 
+                @if (isset($company))
+                    <div class="sidebar" style="height: 95%;">
+                            
+                    </div>
+                @endif
             @endauth
             <main class="content-wrapper d-flex align-items-center justify-content-center flex-column">
                 @yield('content')
@@ -57,7 +61,11 @@
         <script src="https://cdn.jsdelivr.net/npm/halfmoon@1.1.1/js/halfmoon.min.js"></script>
         @yield('scripts')
         <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", () => halfmoon.onDOMContentLoaded());
+            document.addEventListener("DOMContentLoaded", () => {
+                @include('layouts.partials.flash')
+
+                halfmoon.onDOMContentLoaded();
+            });
         </script>
     </body>
 </html>

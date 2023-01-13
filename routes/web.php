@@ -39,10 +39,4 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('company')->group(function() {
         Route::post('search', [SearchController::class, 'search'])->name('company.search');
     });
-
-    Route::get('test', function() {
-        $c = new CompaniesHouse();
-
-        return $c->hello();
-    });
 });

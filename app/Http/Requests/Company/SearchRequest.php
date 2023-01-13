@@ -24,7 +24,7 @@ class SearchRequest extends FormRequest
     public function rules()
     {
         return [
-            'company_id' => 'required|integer'
+            'company_id' => 'required|numeric'
         ];
     }
 }
