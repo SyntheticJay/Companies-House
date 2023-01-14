@@ -29,8 +29,11 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Jay\\CHouse\\": "packages/jay/chouse/src"
-        }
+            "Jay\\CHouse\\": "packages/jay/chouse/src/"
+        },
+        "files": [
+            "app/Helpers/Search.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

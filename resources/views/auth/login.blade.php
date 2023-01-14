@@ -13,26 +13,28 @@
             <h2 class="card-title font-size-24">
                 Login
             </h2>
-            <form method="POST" action="{{ route('login.post') }}">
-                @csrf
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input id="username" type="text" name="username" class="form-control @error('username') is-invalid @enderror" required />
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" required />
-                </div>
+           <div class="card-body">
+                <form method="POST" action="{{ route('login.post') }}">
+                    @csrf
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input id="username" type="text" name="username" class="form-control @error('username') is-invalid @enderror" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input id="password" type="password" name="password" class="form-control @error('password') is-invalid @enderror" required />
+                    </div>
 
-                <div class="row">
-                    <div class="col">
-                        <button type="submit" class="btn btn-primary">Login</button>
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                        <div class="col m-auto">
+                            <a href="{{ route('register') }}">Not a user? Register here</a>
+                        </div>
                     </div>
-                    <div class="col m-auto">
-                        <a href="{{ route('register') }}">Not a user? Register here</a>
-                    </div>
-                </div>
-            </form>
+                </form>
+           </div>
         </div>
     </div>
 @endsection

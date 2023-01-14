@@ -31,3 +31,20 @@
         margin-bottom: #{$i}rem;
     }
 }
+.table {
+    font-family: "Consolas", sans-serif;
+
+    th td {
+        font-weight: bold;
+        font-size: 15px;
+    }
+}
+.table td {
+    font-size: 15px;
+    font-family: "Consolas", sans-serif;
+}
+.card-icon {
+    i {
+        margin-right: 10px;
+    }
+}

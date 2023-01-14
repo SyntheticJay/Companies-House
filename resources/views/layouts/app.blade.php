@@ -16,24 +16,22 @@
             @auth
                 <nav class="navbar">
                     @if (isset($company))
-                        <div class="navbar-content">
+                        {{-- <div class="navbar-content">
                             <button class="btn btn-action" type="button" onclick="halfmoon.toggleSidebar()">
                                 <i class="fa fa-bars" aria-hidden="true"></i>
                                 <span class="sr-only">Toggle sidebar</span>
                             </button>
-                        </div>
+                        </div> --}}
                     @endif
-                    <a href="{{ route('home') }}" class="navbar-brand">
+                    <a href="{{ route('home') }}" class="ml-2 navbar-brand">
                         Companies House
-                    </a>    
-                    <ul class="navbar-nav divided">
-                        <form class="form-inline d-none d-md-flex ml-auto" action="{{ route('company.search') }}" method="POST"> 
-                            @csrf
-                            <input name="company_id" type="text" class="form-control" placeholder="Search by Company ID" required="required">
-                            <button class="btn btn-primary" type="submit">Search</button>
-                        </form>
+                    </a>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="{{ route('search') }}" class="nav-link">Search</a>
+                        </li>
                     </ul>
-                    <div class="d-none d-md-flex ml-auto">
+                    <div class="d-none d-md-flex ml-auto mr-2">
                         <li class="nav-item dropdown with-arrow">
                             <a class="nav-link" data-toggle="dropdown" id="nav-user-dropdown-toggle">
                                 {{ auth()->user()->name }}
@@ -50,11 +48,49 @@
                 </nav>
                 @if (isset($company))
                     <div class="sidebar" style="height: 95%;">
-                            
+                        <div class="sidebar-menu">
+                            <a href="#" class="sidebar-link sidebar-link-with-icon @if (Route::is('company')) active @endif">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-home fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">{{ $company->get('company_name') }}</span>
+                            </a>
+                            <div class="sidebar-divider"></div>
+                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-user-tie fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">Officers</span>
+                            </a>
+                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-history fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">Filing History</span>
+                            </a>
+                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-signature fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">Previous Names</span>
+                            </a>
+                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-credit-card fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">Accounts</span>
+                            </a>
+                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-file-invoice-dollar fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">SIC Codes</span>
+                            </a>
+                        </div>
                     </div>
                 @endif
             @endauth
-            <main class="content-wrapper d-flex align-items-center justify-content-center flex-column">
+            <main class="content-wrapper">
                 @yield('content')
             </main>
         </div>
