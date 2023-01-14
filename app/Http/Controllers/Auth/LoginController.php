@@ -46,10 +46,10 @@ class LoginController extends Controller
      *
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function logout() 
+    public function logout()
     {
         auth()->logout();
-        
+
         return redirect()->route('login');
     }
 }
