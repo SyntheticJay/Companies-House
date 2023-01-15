@@ -37,9 +37,10 @@ class CompanyController extends Controller
      */
     public function index(Request $request, string $companyId)
     {
-        $company = $this->client->fromCompanyID($companyId);
+        $company           = $this->client->fromCompanyID($companyId);
+        $registeredAddress = collect($company->get('registered_office_address'));
 
-        return view('company.index', compact('company'));
+        return view('company.index', compact('company', 'registeredAddress'));
     }
 
     /**
@@ -76,6 +77,35 @@ class CompanyController extends Controller
         });
 
         return view('company.previous-names', compact('company', 'previousNames'));
+    }
+
+    public function filingHistory(Request $request, string $companyId)
+    {
+        $company       = $this->client->fromCompanyID($companyId);
+        $filingHistory = collect($company->get('filing_history')['items'])->map(function ($officer) {
+            return collect($officer);
+        });
+
+        return view('company.filing-history', compact('company', 'filingHistory'));
+    }
+
+    /**
+     * Show the company accounts page
+     *
+     * @param   Request  $request    The request object
+     * @param   string   $companyId  The company ID
+     *
+     * @return \Illuminate\View\View
+     */
+    public function accounts(Request $request, string $companyId)
+    {
+        $company       = $this->client->fromCompanyID($companyId);
+        $accounts      = collect($company->get('accounts'))->map(function ($officer) {
+            return collect($officer);
+        });
+        $confirmation  = collect($company->get('confirmation_statement'));
+
+        return view('company.accounts', compact('company', 'accounts', 'confirmation'));
     }
 
     /**

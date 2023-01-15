@@ -50,7 +50,7 @@
                 @if (isset($company))
                     <div class="sidebar" style="height: 95%;">
                         <div class="sidebar-menu">
-                            <a href="#" class="sidebar-link sidebar-link-with-icon @if (Route::is('company')) active @endif">
+                            <a href="{{ route('company', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon @if (Route::is('company')) active @endif">
                                 <span class="sidebar-icon">
                                     <i class="fa fa-home fa-fw"></i>
                                 </span>
@@ -63,7 +63,7 @@
                                 </span>
                                 <span class="sidebar-text">Officers</span>
                             </a>
-                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                            <a href="{{ route('company.filing-history', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon @if (Route::is('company.filing-history')) active @endif">
                                 <span class="sidebar-icon">
                                     <i class="fa fa-history fa-fw"></i>
                                 </span>
@@ -75,17 +75,24 @@
                                 </span>
                                 <span class="sidebar-text">Previous Names</span>
                             </a>
-                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                            <a href="{{ route('company.accounts', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon @if (Route::is('company.accounts')) active @endif">
                                 <span class="sidebar-icon">
                                     <i class="fa fa-credit-card fa-fw"></i>
                                 </span>
                                 <span class="sidebar-text">Accounts</span>
                             </a>
-                            <a href="{{ route('company.notes', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon">
+                            <a href="{{ route('company.notes', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon @if (Route::is('company.notes')) active @endif">
                                 <span class="sidebar-icon">
                                     <i class="fa fa-sticky-note fa-fw"></i>
                                 </span>
                                 <span class="sidebar-text">Notes</span>
+                            </a>
+                            <!-- search again -->
+                            <a href="{{ route('search') }}" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-search fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">Search Again</span>
                             </a>
                         </div>
                     </div>
