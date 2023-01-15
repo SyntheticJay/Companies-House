@@ -41,5 +41,6 @@ Route::middleware(['auth'])->group(function() {
     Route::prefix('company')->group(function() {
         Route::get('{company_id}', [CompanyController::class, 'index'])->name('company');
         Route::get('{company_id}/officers', [CompanyController::class, 'officers'])->name('company.officers');
+        Route::get('{company_id}/previous-names', [CompanyController::class, 'previousNames'])->name('company.previous-names');
     });
 });

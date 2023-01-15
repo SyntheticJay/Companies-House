@@ -51,8 +51,19 @@ class CompanyController extends Controller
     public function officers(Request $request, string $companyId)
     {
         $company  = $this->client->fromCompanyID($companyId);
-        $officers = $company->get('officers');
+        $officers = collect($company->get('officers')['items'])->map(function ($officer) {
+            return collect($officer);
+        });;
 
         return view('company.officers', compact('company', 'officers'));
+    }
+
+    public function previousNames(Request $request, string $companyId) {
+        $company       = $this->client->fromCompanyID($companyId);
+        $previousNames = collect($company->get('previous_company_names'))->map(function ($officer) {
+            return collect($officer);
+        });
+
+        return view('company.previous-names', compact('company', 'previousNames'));
     }
 }
