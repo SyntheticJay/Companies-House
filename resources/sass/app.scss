@@ -56,3 +56,15 @@
         color: #7a7a7a !important;
     }
 }
+.pull-right {
+    float: right;
+}
+.pull-left {
+    float: left;
+}
+.clearfix {
+    clear: both;
+}
+.action-btns * {
+    display: inline-block;
+}

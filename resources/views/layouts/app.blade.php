@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Companies House - @yield('title')</title>
 
@@ -79,6 +80,12 @@
                                     <i class="fa fa-credit-card fa-fw"></i>
                                 </span>
                                 <span class="sidebar-text">Accounts</span>
+                            </a>
+                            <a href="{{ route('company.notes', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon">
+                                <span class="sidebar-icon">
+                                    <i class="fa fa-sticky-note fa-fw"></i>
+                                </span>
+                                <span class="sidebar-text">Notes</span>
                             </a>
                         </div>
                     </div>

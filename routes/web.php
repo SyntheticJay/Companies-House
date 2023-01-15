@@ -42,5 +42,8 @@ Route::middleware(['auth'])->group(function() {
         Route::get('{company_id}', [CompanyController::class, 'index'])->name('company');
         Route::get('{company_id}/officers', [CompanyController::class, 'officers'])->name('company.officers');
         Route::get('{company_id}/previous-names', [CompanyController::class, 'previousNames'])->name('company.previous-names');
+        Route::get('{company_id}/notes', [CompanyController::class, 'notes'])->name('company.notes');
+        Route::delete('{company_id}/notes/{note_id}', [CompanyController::class, 'deleteNote'])->name('company.notes.delete');
+        Route::put('{company_id}/notes/{note_id}', [CompanyController::class, 'updateNote'])->name('company.notes.update');
     });
 });

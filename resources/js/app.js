@@ -8,3 +8,11 @@ window.$ = window.jQuery = jQuery;
 // Toastr
 import toastr from "toastr";
 window.toastr = toastr;
+
+$(() => {
+    $.ajaxSetup({
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+    });
+});
