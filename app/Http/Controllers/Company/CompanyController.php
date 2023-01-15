@@ -39,4 +39,20 @@ class CompanyController extends Controller
 
         return view('company.index', compact('company'));
     }
+
+    /**
+     * Show the company officers page
+     *
+     * @param   Request  $request      The request object
+     * @param   string   $companyId    The company ID
+     *
+     * @return \Illuminate\View\View
+     */
+    public function officers(Request $request, string $companyId)
+    {
+        $company  = $this->client->fromCompanyID($companyId);
+        $officers = $company->get('officers');
+
+        return view('company.officers', compact('company', 'officers'));
+    }
 }

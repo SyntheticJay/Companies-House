@@ -48,3 +48,11 @@
         margin-right: 10px;
     }
 }
+.nav-link {
+    margin-top: 2px;
+
+    &:hover {
+        border-bottom: 2px solid #7a7a7a;
+        color: #7a7a7a !important;
+    }
+}

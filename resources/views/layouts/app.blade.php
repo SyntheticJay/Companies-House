@@ -28,7 +28,7 @@
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a href="{{ route('search') }}" class="nav-link">Search</a>
+                            <a href="{{ route('search') }}" class="nav-link @if (Route::is('search')) active @endif">Search</a>
                         </li>
                     </ul>
                     <div class="d-none d-md-flex ml-auto mr-2">
@@ -56,7 +56,7 @@
                                 <span class="sidebar-text">{{ $company->get('company_name') }}</span>
                             </a>
                             <div class="sidebar-divider"></div>
-                            <a href="#" class="sidebar-link sidebar-link-with-icon">
+                            <a href="{{ route('company.officers', $company->get('company_number')) }}" class="sidebar-link sidebar-link-with-icon">
                                 <span class="sidebar-icon">
                                     <i class="fa fa-user-tie fa-fw"></i>
                                 </span>

@@ -3,7 +3,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center align-items-center">
-        <div class="card @if (isset($results)) w-600 @else w-500 @endif">
+        <div class="card @if (isset($results)) w-full m-5 @else w-500 @endif">
             @if (!isset($results))
                 <h2 class="card-title">
                     <span class="card-icon">
@@ -12,13 +12,10 @@
                     Search
                 </h2>
                 <hr/>
-                <p class="text-weight-bold">
-                    Search for a company by name or number.
-                </p>
-                <form method="POST" action="{{ route('search.handle') }}">
+                <form method="POST" class="mt-2" action="{{ route('search.handle') }}">
                     @csrf
                     <label for="query">Query</label>
-                    <input name="query" id="query" type="text" class="form-control" />
+                    <input name="query" id="query" type="text" class="form-control" placeholder="Company ID or Name" />
 
                     <button type="submit" class="btn btn-dark mt-1">Search</button>
                 </form>
@@ -54,7 +51,7 @@
                                         <td>{{ $result->get('company_status') }}</td>
                                         <td>{{ implode(', ', $result->get('sic_codes')) }}</td>
                                         <td>{{ $result->get('type') }}</td>
-                                        <td>
+                                        <td class="text-right">
                                             <a data-tooltip="View {{ $result->get('company_name') }}" class="btn btn-dark btn-sm" href="{{ route('company', $result->get('company_number')) }}">
                                                 <i class="fa fa-eye fa-fw"></i>
                                             </a>
