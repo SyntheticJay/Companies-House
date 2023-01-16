@@ -44,8 +44,12 @@ Route::middleware(['auth'])->group(function() {
         Route::get('{company_id}/previous-names', [CompanyController::class, 'previousNames'])->name('company.previous-names');
         Route::get('{company_id}/filing-history', [CompanyController::class, 'filingHistory'])->name('company.filing-history');
         Route::get('{company_id}/accounts', [CompanyController::class, 'accounts'])->name('company.accounts');
+        
         Route::get('{company_id}/notes', [CompanyController::class, 'notes'])->name('company.notes');
+        Route::get('{company_id}/notes/archived', [CompanyController::class, 'archivedNotes'])->name('company.notes.archived');
         Route::delete('{company_id}/notes/{note_id}', [CompanyController::class, 'deleteNote'])->name('company.notes.delete');
         Route::put('{company_id}/notes/{note_id}', [CompanyController::class, 'updateNote'])->name('company.notes.update');
+        Route::post('{company_id}/notes', [CompanyController::class, 'addNote'])->name('company.notes.add');
+        Route::put('{company_id}/notes/{note_id}/restore', [CompanyController::class, 'restoreNote'])->name('company.notes.restore');
     });
 });

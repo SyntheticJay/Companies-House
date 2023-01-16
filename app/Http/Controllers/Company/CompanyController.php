@@ -128,6 +128,25 @@ class CompanyController extends Controller
     }
 
     /**
+     * Show the company archived notes page
+     *
+     * @param   Request  $request    The request object
+     * @param   string   $companyId  The company ID
+     *
+     * @return \Illuminate\View\View
+     */
+    public function archivedNotes(Request $request, string $companyId)
+    {
+        $company      = $this->client->fromCompanyID($companyId);
+        $userNotes    = Note::where('company_id', $companyId)
+                            ->where('user_id', $request->user()->id)
+                            ->where('is_archived', true)
+                            ->get();
+
+        return view('company.notes', compact('company', 'userNotes'));
+    }
+
+    /**
      * Delete a note
      *
      * @param   Request  Request     The request object
@@ -162,7 +181,7 @@ class CompanyController extends Controller
      *
      * @param   Request   $request    The request object
      *
-     * @return \Illuminate\Http\RedirectResponse
+     * @return \Illuminate\Http\JsonResponse
      */
     public function updateNote(Request $request, string $companyId, string $noteId)
     {
@@ -192,6 +211,66 @@ class CompanyController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Note updated'
+        ]);
+    }
+
+    /**
+     * Restore a note
+     *
+     * @param   Request  $request    The request object
+     * @param   string   $companyId  The company ID
+     * @param   string   $noteId     The note ID
+     *
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function restoreNote(Request $request, string $companyId, string $noteId)
+    {
+        $note = Note::where('company_id', $companyId)
+                    ->where('user_id', $request->user()->id)
+                    ->where('id', $noteId)
+                    ->first();
+
+        if (!$note) {
+            return redirect()->back()->with('error', 'Note not found');
+        }
+
+        try {
+            $note->update(['is_archived' => false]);
+        } catch (\Exception $e) {
+            report($e);
+            return redirect()->back()->with('error', 'Failed to restore note');
+        }
+
+        return redirect()->back()->with('success', 'Note restored');
+    }
+
+    /**
+     * Add a note (AJAX)
+     *
+     * @param   Request   $request    The request object
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function addNote(Request $request, string $companyId)
+    {
+        try {
+            $note = Note::create([
+                'company_id' => $companyId, 
+                'user_id'    => $request->user()->id,
+                'note'       => $request->input('note')
+            ]);    
+        } catch (\Exception $e) {
+            report($e);
+            return response()->json([
+                'success' => false,
+                'message' => 'Failed to add note'
+            ]);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Note added',
+            'noteId'  => $note->id
         ]);
     }
 }

@@ -16,14 +16,6 @@
         <div class="page-wrapper @auth with-navbar @endauth @if (isset($company)) with-sidebar @endif">
             @auth
                 <nav class="navbar">
-                    @if (isset($company))
-                        {{-- <div class="navbar-content">
-                            <button class="btn btn-action" type="button" onclick="halfmoon.toggleSidebar()">
-                                <i class="fa fa-bars" aria-hidden="true"></i>
-                                <span class="sr-only">Toggle sidebar</span>
-                            </button>
-                        </div> --}}
-                    @endif
                     <a href="{{ route('home') }}" class="ml-2 navbar-brand">
                         Companies House
                     </a>
