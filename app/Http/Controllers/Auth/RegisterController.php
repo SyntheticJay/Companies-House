@@ -23,8 +23,8 @@ class RegisterController extends Controller
         if (auth()->check()) {
             return redirect()->route('home');
         }
-        
-        return view('auth.register');    
+
+        return view('auth.register');
     }
 
     /**
@@ -39,9 +39,9 @@ class RegisterController extends Controller
 
         if ($validated['password'] != $validated['confirm']) {
             return redirect()
-                    ->back()
-                    ->withInput()
-                    ->withErrors(['confirm' => 'The passwords do not match', 'password' => 'The passwords do not match']);
+                ->back()
+                ->withInput()
+                ->withErrors(['confirm' => 'The passwords do not match', 'password' => 'The passwords do not match']);
         }
 
         try {
@@ -50,15 +50,19 @@ class RegisterController extends Controller
                 'email'    => $validated['email'],
                 'password' => Hash::make($validated['password']),
                 'phone'    => $validated['phone'] ?? null,
-            ]);    
+            ]);
         } catch (\Exception $e) {
             report($e);
             Log::error('Error registering user ' . $validated['username'] . ' with email ' . $validated['email'] . ' and phone ' . $validated['phone']);
-            return;
+
+            return redirect()
+                ->back()
+                ->withInput()
+                ->withErrors(['email' => 'There was an error registering your account. Please try again later']);
         }
 
         return redirect()
-                ->route('login')
-                ->with('success', 'You have successfully registered. Please login to continue');
+            ->route('login')
+            ->with('success', 'You have successfully registered. Please login to continue');
     }
 }
