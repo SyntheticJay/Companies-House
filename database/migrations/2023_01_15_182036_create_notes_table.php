@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('company_id');
             $table->text('note');
-            $table->tinyInteger('is_private')->default(ViewPreference::PRIVATE);
             $table->tinyInteger('is_archived')->default(0);
             $table->timestamps();
         });

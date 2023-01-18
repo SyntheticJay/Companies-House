@@ -31,10 +31,13 @@
                                 <i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
                             </a>
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="nav-user-dropdown-toggle">
-                                <a href="{{ route('logout') }}" class="dropdown-item">
-                                    <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
-                                    Logout
-                                </a>
+                                <form id="logoutForm" method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <a onclick="document.getElementById('logoutForm').submit()" class="dropdown-item">
+                                        <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+                                        Logout
+                                    </a>
+                                </form>
                             </div>
                         </li>
                     </div>
@@ -79,6 +82,7 @@
                                 </span>
                                 <span class="sidebar-text">Notes</span>
                             </a>
+                            <div class="sidebar-divider"></div>
                             <!-- search again -->
                             <a href="{{ route('search') }}" class="sidebar-link sidebar-link-with-icon">
                                 <span class="sidebar-icon">

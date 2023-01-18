@@ -120,9 +120,9 @@ class CompanyController extends Controller
     {
         $company      = $this->client->fromCompanyID($companyId);
         $userNotes    = Note::where('company_id', $companyId)
-                            ->where('user_id', $request->user()->id)
-                            ->where('is_archived', false)
-                            ->get();
+            ->where('user_id', $request->user()->id)
+            ->where('is_archived', false)
+            ->get();
 
         return view('company.notes', compact('company', 'userNotes'));
     }
@@ -139,9 +139,9 @@ class CompanyController extends Controller
     {
         $company      = $this->client->fromCompanyID($companyId);
         $userNotes    = Note::where('company_id', $companyId)
-                            ->where('user_id', $request->user()->id)
-                            ->where('is_archived', true)
-                            ->get();
+            ->where('user_id', $request->user()->id)
+            ->where('is_archived', true)
+            ->get();
 
         return view('company.notes', compact('company', 'userNotes'));
     }
@@ -158,9 +158,9 @@ class CompanyController extends Controller
     public function deleteNote(Request $request, string $companyId, string $noteId)
     {
         $note    = Note::where('company_id', $companyId)
-                    ->where('user_id', $request->user()->id)
-                    ->where('id', $noteId)
-                    ->first();
+            ->where('user_id', $request->user()->id)
+            ->where('id', $noteId)
+            ->first();
 
         if (!$note) {
             return redirect()->back()->with('error', 'Note not found');
@@ -187,9 +187,9 @@ class CompanyController extends Controller
     {
         $newNote = $request->input('note');
         $note    = Note::where('company_id', $companyId)
-                    ->where('user_id', $request->user()->id)
-                    ->where('id', $noteId)
-                    ->first();
+            ->where('user_id', $request->user()->id)
+            ->where('id', $noteId)
+            ->first();
 
         if (!$note) {
             return response()->json([
@@ -226,9 +226,9 @@ class CompanyController extends Controller
     public function restoreNote(Request $request, string $companyId, string $noteId)
     {
         $note = Note::where('company_id', $companyId)
-                    ->where('user_id', $request->user()->id)
-                    ->where('id', $noteId)
-                    ->first();
+            ->where('user_id', $request->user()->id)
+            ->where('id', $noteId)
+            ->first();
 
         if (!$note) {
             return redirect()->back()->with('error', 'Note not found');
@@ -255,10 +255,10 @@ class CompanyController extends Controller
     {
         try {
             $note = Note::create([
-                'company_id' => $companyId, 
+                'company_id' => $companyId,
                 'user_id'    => $request->user()->id,
                 'note'       => $request->input('note')
-            ]);    
+            ]);
         } catch (\Exception $e) {
             report($e);
             return response()->json([

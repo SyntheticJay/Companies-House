@@ -19,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
+Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::prefix('auth')->group(function() {
+Route::prefix('auth')->group(function () {
     Route::get('register', [RegisterController::class, 'show'])->name('register');
     Route::post('register', [RegisterController::class, 'register'])->name('register.post');
 
@@ -34,17 +34,17 @@ Route::prefix('auth')->group(function() {
 Route::get('search', [SearchController::class, 'index'])->name('search');
 Route::post('search', [SearchController::class, 'search'])->name('search.handle');
 
-Route::middleware(['auth'])->group(function() {
+Route::middleware(['auth'])->group(function () {
     Route::get('home', [HomeController::class, 'show'])->name('home');
-    Route::get('logout', [LoginController::class, 'logout'])->name('logout');
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::prefix('company')->group(function() {
+    Route::prefix('company')->group(function () {
         Route::get('{company_id}', [CompanyController::class, 'index'])->name('company');
         Route::get('{company_id}/officers', [CompanyController::class, 'officers'])->name('company.officers');
         Route::get('{company_id}/previous-names', [CompanyController::class, 'previousNames'])->name('company.previous-names');
         Route::get('{company_id}/filing-history', [CompanyController::class, 'filingHistory'])->name('company.filing-history');
         Route::get('{company_id}/accounts', [CompanyController::class, 'accounts'])->name('company.accounts');
-        
+
         Route::get('{company_id}/notes', [CompanyController::class, 'notes'])->name('company.notes');
         Route::get('{company_id}/notes/archived', [CompanyController::class, 'archivedNotes'])->name('company.notes.archived');
         Route::delete('{company_id}/notes/{note_id}', [CompanyController::class, 'deleteNote'])->name('company.notes.delete');

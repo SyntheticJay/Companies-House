@@ -16,11 +16,9 @@ class Note extends Model implements Auditable
         'user_id',
         'company_id',
         'note',
-        'is_private',
         'is_archived'
     ];
     protected $casts    = [
-        'is_private' => 'boolean',
         'is_archived' => 'boolean'
     ];
 }

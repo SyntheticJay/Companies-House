@@ -69,9 +69,6 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="row">
-                                <!-- publicly available notes cs -->
-                            </div>
                         </div>
                     </div>
                 </div>
