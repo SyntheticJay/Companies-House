@@ -23,7 +23,7 @@
                                             </tr>
                                             <tr>
                                                 <td>Due On</td>
-                                                <td>{{ $lastAccounts->get('due_date') }}</td>
+                                                <td>{{ $lastAccounts->get('due_on') ?? 'Unknown' }}</td>
                                             </tr>
                                             <tr>
                                                 <td>Made Up To</td>

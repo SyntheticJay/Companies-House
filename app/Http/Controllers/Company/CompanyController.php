@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Company;
 
 use App\Http\Controllers\Controller;
 use App\Models\Company\Note;
+use App\Models\Company\SicCode\SicCode;
 use App\Enums\Company\Notes\ViewPreference;
 use Illuminate\Http\Request;
 use Jay\CHouse\CompaniesHouse;
@@ -38,9 +39,10 @@ class CompanyController extends Controller
     public function index(Request $request, string $companyId)
     {
         $company           = $this->client->fromCompanyID($companyId);
+        $sicCodes          = SicCode::whereIn('sic_code', $company->get('sic_codes') ?? [])->get();
         $registeredAddress = collect($company->get('registered_office_address'));
 
-        return view('company.index', compact('company', 'registeredAddress'));
+        return view('company.index', compact('company', 'registeredAddress', 'sicCodes'));
     }
 
     /**
@@ -130,8 +132,8 @@ class CompanyController extends Controller
     /**
      * Show the company archived notes page
      *
-     * @param   Request  $request    The request object
-     * @param   string   $companyId  The company ID
+     * @param  Request  $request    The request object
+     * @param  string   $companyId  The company ID
      *
      * @return \Illuminate\View\View
      */
@@ -149,9 +151,9 @@ class CompanyController extends Controller
     /**
      * Delete a note
      *
-     * @param   Request  Request     The request object
-     * @param   string   $companyId  The company ID
-     * @param   string   $noteId     The note ID
+     * @param  Request  Request     The request object
+     * @param  string   $companyId  The company ID
+     * @param  string   $noteId     The note ID
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -179,8 +181,10 @@ class CompanyController extends Controller
     /**
      * Update a note (AJAX)
      *
-     * @param   Request   $request    The request object
-     *
+     * @param  Request  $request  The request object
+     * @param  string   $companyId  The company ID
+     * @param  string   $noteId     The note ID
+     * 
      * @return \Illuminate\Http\JsonResponse
      */
     public function updateNote(Request $request, string $companyId, string $noteId)

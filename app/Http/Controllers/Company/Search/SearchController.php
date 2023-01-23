@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Search;
+namespace App\Http\Controllers\Company\Search;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Search\SearchRequest;
 use Jay\CHouse\CompaniesHouse;
-use Illuminate\Http\Request;
 
 class SearchController extends Controller
 {

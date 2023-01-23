@@ -18,8 +18,8 @@
                                     </h2>
                                     <div class="card-body">
                                         <ul>
-                                            @foreach ($company->get('sic_codes') as $sicCode)
-                                                <li>{{ $sicCode }}</li>
+                                            @foreach ($sicCodes as $code)
+                                                <li>{{ $code->sic_code }} - {{ $code->description }}</li>
                                             @endforeach
                                         </ul>
                                     </div>

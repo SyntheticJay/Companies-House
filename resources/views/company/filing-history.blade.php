@@ -10,7 +10,7 @@
                     Filing History
                 </h1>
                 <div class="my-20">
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">Category</th>

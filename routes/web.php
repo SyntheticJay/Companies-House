@@ -3,7 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Home\HomeController;
-use App\Http\Controllers\Search\SearchController;
+use App\Http\Controllers\Company\Search\SearchController;
 use App\Http\Controllers\Company\CompanyController;
 
 use Illuminate\Support\Facades\Route;
