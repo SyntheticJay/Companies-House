@@ -2,7 +2,6 @@
 
 namespace Jay\CHouse;
 
-use Jay\CHouse\Enum\SearchType;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Support\Collection;
@@ -12,7 +11,8 @@ use Illuminate\Support\Collection;
  *
  * @author Jay <jay@entigy.co.uk>
  */
-class CompaniesHouse {
+class CompaniesHouse
+{
     protected const BASE_URI = 'https://api.company-information.service.gov.uk';
 
     private Client $client;
@@ -24,7 +24,8 @@ class CompaniesHouse {
      *
      * @return  void
      */
-    public function __construct(private string $key) {
+    public function __construct(private string $key)
+    {
         $this->key    = $key;
         $this->client = new Client([
             'base_uri' => self::BASE_URI,
@@ -42,7 +43,8 @@ class CompaniesHouse {
      *
      * @return Collection
      */
-    public function fromCompanyID(string $companyId): Collection {
+    public function fromCompanyID(string $companyId): Collection
+    {
         $response = null;
 
         try {
@@ -77,7 +79,8 @@ class CompaniesHouse {
      *
      * @return  Collection
      */
-    public function fromCompanyName(string $companyName): Collection {
+    public function fromCompanyName(string $companyName): Collection
+    {
         $response = $this->client->get('/search/companies', [
             'query' => [
                 'q' => $companyName
@@ -99,7 +102,15 @@ class CompaniesHouse {
         return $results;
     }
 
-    public function fromURL(string $baseURL) {
+    /**
+     * Fetch data given a URL
+     * 
+     * @param   string  $baseURL  The URL to fetch data from
+     * 
+     * @return  Collection
+     */
+    public function fromURL(string $baseURL)
+    {
         $response = $this->client->get($baseURL);
         $content  = $response->getBody()->getContents();
 

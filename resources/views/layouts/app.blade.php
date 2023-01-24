@@ -26,7 +26,7 @@
                     </ul>
                     <div class="d-none d-md-flex ml-auto mr-2">
                         <li class="nav-item dropdown with-arrow">
-                            <a class="nav-link" data-toggle="dropdown" id="nav-user-dropdown-toggle">
+                            <a class="nav-link user-profile" data-toggle="dropdown" id="nav-user-dropdown-toggle">
                                 {{ auth()->user()->name }}
                                 <i class="fa fa-angle-down ml-5" aria-hidden="true"></i>
                             </a>

@@ -51,7 +51,7 @@
 .nav-link {
     margin-top: 2px;
 
-    &:hover {
+    &:hover:not(.active):not(.disabled):not(.user-profile) {
         border-bottom: 2px solid #7a7a7a;
         color: #7a7a7a !important;
     }
