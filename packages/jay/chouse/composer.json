@@ -1,5 +1,6 @@
 {
-    "name": "jay/chouse",
+    "name": "jayl/chouse",
+    "description": "A PHP library for the CHouse API",
     "autoload": {
         "psr-4": {
             "Jay\\CHouse\\": "src/"

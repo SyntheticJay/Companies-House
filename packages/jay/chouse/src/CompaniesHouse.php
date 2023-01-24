@@ -1,6 +1,6 @@
 <?php
 
-namespace Jay\CHouse;
+namespace JayL\CHouse;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
