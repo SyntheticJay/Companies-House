@@ -8,6 +8,16 @@
     "devDependencies": {
         "axios": "^1.6.1",
         "laravel-vite-plugin": "^0.8.0",
+        "sass": "^1.69.5",
         "vite": "^4.0.0"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.5.1",
+        "@inertiajs/vue3": "^1.0.14",
+        "@mdi/font": "^7.3.67",
+        "@vitejs/plugin-vue": "^4.5.2",
+        "vue": "^3.3.11",
+        "vuetify": "^3.4.7",
+        "ziggy": "^2.4.0"
     }
 }
