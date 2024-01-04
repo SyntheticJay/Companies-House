@@ -35,6 +35,7 @@
         </v-container>
     </AuthenticatedLayout>
 </template>
+
 <script setup>
 import AuthenticatedLayout from "../Layouts/AuthenticatedLayout.vue";
 import { usePage, router, useForm } from "@inertiajs/vue3";

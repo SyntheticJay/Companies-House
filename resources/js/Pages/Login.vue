@@ -39,6 +39,7 @@
         </v-container>
     </v-app>
 </template>
+
 <script setup>
 import { useForm } from "@inertiajs/vue3";
 

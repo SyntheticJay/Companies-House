@@ -6,6 +6,8 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Profile\ProfileController;
 use App\Http\Controllers\Search\SearchController;
+use App\Http\Controllers\Company\CompanyController;
+use App\Http\Controllers\Monitor\MonitorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,5 +57,19 @@ Route::group([
    ], function () {
        Route::get('/', [SearchController::class, 'index'])->name('index');
        Route::post('/', [SearchController::class, 'search'])->name('submit');
+   });
+
+   Route::group([
+       'prefix' => 'companies',
+         'as'    => 'companies.'
+   ], function () {
+       Route::get('/{companyNumber}', [CompanyController::class, 'index'])->name('index');
+   });
+
+   Route::group([
+       'prefix' => 'monitor',
+       'as'    => 'monitor.'
+   ], function () {
+      Route::get('/', [MonitorController::class, 'index'])->name('index');
    });
 });

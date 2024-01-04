@@ -16,6 +16,7 @@
         "@inertiajs/vue3": "^1.0.14",
         "@mdi/font": "^7.3.67",
         "@vitejs/plugin-vue": "^4.5.2",
+        "moment": "^2.29.4",
         "vue": "^3.3.11",
         "vuetify": "^3.4.7",
         "ziggy": "^2.4.0"

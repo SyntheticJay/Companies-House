@@ -8,6 +8,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives';
+import moment from 'moment';
 
 createInertiaApp({
     resolve: name => {
@@ -23,10 +24,19 @@ createInertiaApp({
             }
         });
 
-        createApp({ render: () => h(App, props) })
+        const app = createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue)
-            .use(vuetify)
-            .mount(el);
+            .use(vuetify);
+
+        app.config.globalProperties.$filters = {
+            prettyDate(value, format) {
+                if (value) {
+                    return moment(String(value)).format(format)
+                }
+            }
+        };
+
+        app.mount(el);
     },
 });

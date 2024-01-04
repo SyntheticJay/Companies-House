@@ -31,4 +31,8 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'companies-house' => [
+        'api_token' => env('COMPANIES_HOUSE_KEY', ''),
+        'base_url' => env('COMPANIES_HOUSE_URL', 'https://api.companieshouse.gov.uk')
+    ]
 ];

@@ -4,12 +4,22 @@ namespace App\Http\Controllers\Search;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Search\SearchRequest;
-use Illuminate\Http\Request;
+use App\Services\CompaniesHouseService;
 use Inertia\Inertia;
-use JustSteveKing\CompaniesHouseLaravel\Client as CompaniesHouseClient;
 
 class SearchController extends Controller
 {
+    /**
+     * SearchController constructor.
+     *
+     * @param CompaniesHouseService $companiesHouseService
+     *
+     * @return void
+     */
+    public function __construct(
+        readonly CompaniesHouseService $companiesHouseService
+    ) {}
+
     public function index()
     {
         return Inertia::render('Search');
@@ -18,7 +28,9 @@ class SearchController extends Controller
     public function search(SearchRequest $request)
     {
         $validated = $request->validated();
-        $result    = collect(CompaniesHouseClient::make()->searchCompany($validated['query']));
+        $result    = $this->companiesHouseService->query(
+            query: $validated['query']
+        );
 
         return Inertia::render('Search', [
             'companies' => $result,

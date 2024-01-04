@@ -32,6 +32,7 @@
                             <th>Status</th>
                             <th>Number</th>
                             <th>Locality</th>
+                            <th>Date of Creation</th>
                             <th></th>
                         </tr>
                     </thead>
@@ -40,14 +41,15 @@
                             <td>{{ company.title }}</td>
                             <td>
                                 <v-chip
-                                    :color="company.status === 'active' ? 'green' : 'red'"
+                                    :color="company.company_status === 'active' ? 'green' : 'red'"
                                     text-color="white"
-                                >{{ company.status }}</v-chip>
+                                >{{ company.company_status }}</v-chip>
                             </td>
-                            <td>{{ company.number }}</td>
+                            <td>{{ company.company_number }}</td>
                             <td>{{ company.address.locality }}</td>
+                            <td>{{ $filters.prettyDate(company.date_of_creation, 'DD/MM/YYYY') }}</td>
                             <td class="text-end">
-                                <v-btn color="secondary" text>
+                                <v-btn @click="this.$inertia.visit(route('companies.index', company.company_number))" color="secondary" text>
                                     <v-icon>mdi-eye</v-icon>
                                 </v-btn>
                             </td>
