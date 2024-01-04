@@ -44,7 +44,7 @@ const drawer = ref(true);
 const theme = useTheme();
 const usingDark = computed(() => theme.global.current.value.dark);
 
-function toggleTheme () {
+const toggleTheme = () => {
     theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-};
+}
 </script>
